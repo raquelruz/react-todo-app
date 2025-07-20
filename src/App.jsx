@@ -12,6 +12,10 @@ export const App = () => {
 			<Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
 			<h1 className="app-title">📝 Mi lista de tareas</h1>
 
+            {activeTab === Tabs.TODOS && <h2>Pestaña: Todos</h2>}
+
+            {activeTab === Tabs.FAVORITES && <h2>Pestaña: Favoritas</h2>}
+
             {activeTab === Tabs.NEW_TODO && <TodoForm />}
 		</div>
 	);
