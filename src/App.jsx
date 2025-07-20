@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import "./App.css";
 import { Navigation } from "./components/Navigation/Navigation";
 import { Tabs } from "./components/Navigation/Tabs";
@@ -6,6 +6,11 @@ import { TodoForm } from "./components/TodoForm/TodoForm";
 
 export const App = () => {
 	const [activeTab, setActiveTab] = useState(Tabs.TODOS);
+    const [todos, setTodos] = useState([]);
+
+    const addTodo = (newTodo) => {
+        setTodos(prev => [...prev, newTodo]);
+    }
 
 	return (
 		<div className="app-container">
@@ -16,7 +21,7 @@ export const App = () => {
 
             {activeTab === Tabs.FAVORITES && <h2>Pestaña: Favoritas</h2>}
 
-            {activeTab === Tabs.NEW_TODO && <TodoForm />}
+            {activeTab === Tabs.NEW_TODO && <TodoForm addTodo={addTodo}/>}
 		</div>
 	);
 };

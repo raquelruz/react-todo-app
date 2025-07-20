@@ -1,17 +1,17 @@
 import { useState } from "react";
-import './TodoForm.css'
+import "./TodoForm.css";
 
 const INITIAL_FORM_STATE = { todoText: "" };
 
-export const TodoForm = () => {
+export const TodoForm = ({ addTodo }) => {
 	const [form, setForm] = useState(INITIAL_FORM_STATE);
 
 	const onFormSubmit = (event) => {
 		event.preventDefault();
 
-        if(!form.todoText) {
-            console.log("Rellena el campo texto");
-        }
+		if (!form.todoText) {
+			console.log("Rellena el campo texto");
+		}
 
 		const newTodo = {
 			text: form.todoText,
@@ -22,7 +22,7 @@ export const TodoForm = () => {
 		};
 
 		console.log("Formulario enviado", newTodo);
-
+        addTodo(newTodo);
 		setForm(INITIAL_FORM_STATE);
 	};
 
