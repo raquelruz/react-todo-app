@@ -6,6 +6,7 @@ import { TodoForm } from "./components/TodoForm/TodoForm";
 import { TodoList } from "./components/TodoList/TodoList";
 import { Favorites } from "./components/Favorites/Favorites";
 import { storage } from "./helpers/storage";
+import { Footer } from "./components/Footer/Footer";
 
 const STORAGE_TODOS_KEY = "todos";
 
@@ -40,7 +41,7 @@ const STORAGE_TODOS_KEY = "todos";
 // 	},
 // ];
 
-const INITIAL_TODOS = storage.get(STORAGE_TODOS_KEY)
+const INITIAL_TODOS = storage.get(STORAGE_TODOS_KEY);
 
 export const App = () => {
 	const [activeTab, setActiveTab] = useState(Tabs.TODOS);
@@ -78,6 +79,11 @@ export const App = () => {
 		storage.save(STORAGE_TODOS_KEY, filtered);
 	};
 
+	const onDeleteAll = () => {
+		setTodos([]);
+		storage.remove(STORAGE_TODOS_KEY);
+	};
+
 	return (
 		<div className="app-container">
 			<Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -102,6 +108,8 @@ export const App = () => {
 			)}
 
 			{activeTab === Tabs.NEW_TODO && <TodoForm addTodo={addTodo} />}
+		
+			<Footer onDeleteAll={onDeleteAll} />
 		</div>
 	);
 };
