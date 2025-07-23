@@ -23,3 +23,15 @@
   background-color: #61dafb;
   color: black;
 }
+
+@media (width <= 767px) {
+  .nav {
+    padding: 10px 10px;
+    gap: 4px;
+  }
+
+  .tab {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
